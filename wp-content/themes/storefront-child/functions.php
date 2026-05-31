@@ -1,5 +1,5 @@
 <?php 
-// session_start();
+session_start();
 add_filter('jpeg_quality', function($arg){return 100;});
 
 add_action("init", function () {
