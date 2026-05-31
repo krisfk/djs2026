@@ -1,5 +1,11 @@
 <?php 
-session_start();
+//session_start();
+
+ob_start();          // 攔截所有提早輸出的空白、雜訊與 Notice
+if ( ! session_id() ) {
+    session_start();
+}
+
 add_filter('jpeg_quality', function($arg){return 100;});
 
 add_action("init", function () {
