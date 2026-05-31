@@ -1454,13 +1454,14 @@ a.cart-contents:hover,
 
 .site-header .custom-logo-link:after {
   content: 'DJSSHOPPING';
-  font-size: 30px;
+  font-size: 22px;
   display: inline;
   color: #e072ac;
   /* font-family: initial; */
   /* font-family: 'Clicker Script', cursive; */
   float: left;
-  margin: 9px 0 0 0;
+  margin: 17px 0 0 0;
+  
 }
 
 .site-header .custom-logo-link img {
