@@ -6,6 +6,9 @@
 //     session_start();
 // }
 
+
+
+
 add_filter('jpeg_quality', function($arg){return 100;});
 
 add_action("init", function () {
@@ -827,4 +830,49 @@ add_action('woocommerce_product_bulk_edit_save', 'save_custom_field_product_bulk
 add_filter( 'woocommerce_checkout_fields', 'md_custom_woocommerce_checkout_fields' );
 
 
+// 修正後台商品編輯頁面新增分類無法即時更新的 JS 相容性補丁
+add_action('admin_footer-post.php', 'fix_woo_ajax_category_instant_update');
+add_action('admin_footer-post-new.php', 'fix_woo_ajax_category_instant_update');
+function fix_woo_ajax_category_instant_update() {
+    global $post_type;
+    if ('product' !== $post_type) return; // 只在商品編輯頁面生效
+    ?>
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+        // 監聽新增分類按鈕的點擊
+        $(document).on('click', '#product_cat-add-submit', function() {
+            // 延遲 1.2 秒（等待後端成功的 Ajax 寫入資料庫後）
+            setTimeout(function() {
+                // 檢查前端是否卡在 undefined 報錯而沒更新列表
+                // 我們利用 WordPress 內建方法強制只刷新「商品分類」這個區塊的 HTML
+                if (typeof wp !== 'undefined' && wp.heartbeat) {
+                    // 如果卡死，我們強行手動拉取剛剛Response裡已經生成的最新分類
+                    // 最穩固、最簡單的做法是直接用 AJAX 局部 load 刷新分類盒子，繞過出錯的 post.min.js
+                    var post_id = $('#post_ID').val() || 0;
+                    $.get(ajaxurl, { 
+                        action: 'get-taxonomies-checklist', 
+                        taxonomy: 'product_cat', 
+                        post_id: post_id 
+                    }, function(response) {
+                        if(response) {
+                            $('#product_catchecklist').html(response);
+                            // 成功將最新分類無感塞入列表，並自動清空輸入框
+                            $('#newproduct_cat').val('');
+                        }
+                    });
+                }
+            }, 1200);
+        });
+    });
+    </script>
+    <?php
+}
+
+
  ?>
+
+
+
+
+
+
