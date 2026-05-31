@@ -779,8 +779,8 @@ add_action('woocommerce_product_bulk_edit_save', 'save_custom_field_product_bulk
          $error_message = $response->get_error_message();
          echo "Something went wrong: $error_message";
       } else {
-        $_SESSION["use_pts"]='';
-        $_SESSION["member_id"]='';
+        // $_SESSION["use_pts"]='';
+        // $_SESSION["member_id"]='';
 
          // echo 'Response:<pre>';
          // print_r( $response );
