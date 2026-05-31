@@ -829,50 +829,66 @@ add_action('woocommerce_product_bulk_edit_save', 'save_custom_field_product_bulk
 }
 add_filter( 'woocommerce_checkout_fields', 'md_custom_woocommerce_checkout_fields' );
 
-
-// 修正後台商品編輯頁面新增分類無法即時更新的 JS 相容性補丁
-add_action('admin_footer-post.php', 'fix_woo_ajax_category_instant_update');
-add_action('admin_footer-post-new.php', 'fix_woo_ajax_category_instant_update');
-function fix_woo_ajax_category_instant_update() {
+// 終極全自動前端 Ajax 攔截補丁（直接解析成功的 XML）
+add_action('admin_footer-post.php', 'fix_woo_ajax_category_instant_update_v2');
+add_action('admin_footer-post-new.php', 'fix_woo_ajax_category_instant_update_v2');
+function fix_woo_ajax_category_instant_update_v2() {
     global $post_type;
-    if ('product' !== $post_type) return; // 只在商品編輯頁面生效
+    if ('product' !== $post_type) return;
     ?>
     <script type="text/javascript">
     jQuery(document).ready(function($) {
-        // 監聽新增分類按鈕的點擊
-        $(document).on('click', '#product_cat-add-submit', function() {
-            // 延遲 1.2 秒（等待後端成功的 Ajax 寫入資料庫後）
-            setTimeout(function() {
-                // 檢查前端是否卡在 undefined 報錯而沒更新列表
-                // 我們利用 WordPress 內建方法強制只刷新「商品分類」這個區塊的 HTML
-                if (typeof wp !== 'undefined' && wp.heartbeat) {
-                    // 如果卡死，我們強行手動拉取剛剛Response裡已經生成的最新分類
-                    // 最穩固、最簡單的做法是直接用 AJAX 局部 load 刷新分類盒子，繞過出錯的 post.min.js
-                    var post_id = $('#post_ID').val() || 0;
-                    $.get(ajaxurl, { 
-                        action: 'get-taxonomies-checklist', 
-                        taxonomy: 'product_cat', 
-                        post_id: post_id 
-                    }, function(response) {
-                        if(response) {
-                            $('#product_catchecklist').html(response);
-                            // 成功將最新分類無感塞入列表，並自動清空輸入框
-                            $('#newproduct_cat').val('');
+        // 全局攔截所有的 Ajax 成功回傳事件
+        $(document).ajaxSuccess(function(event, xhr, settings) {
+            // 判斷這次的請求是不是新增商品分類
+            if (settings.data && settings.data.indexOf('action=add-category') !== -1 && settings.data.indexOf('taxonomy=product_cat') !== -1) {
+                
+                var responseText = xhr.responseText;
+                if (!responseText) return;
+
+                try {
+                    // 使用瀏覽器自帶的 XML 解析器讀取乾淨的回傳內容
+                    var parser = new DOMParser();
+                    var xmlDoc = parser.parseFromString(responseText, "text/xml");
+                    var supplemental = xmlDoc.getElementsByTagName("supplemental")[0];
+                    
+                    if (supplemental) {
+                        // 提取出裡面原本要給官方用的最新分類 HTML 列表內容
+                        var rawHtml = supplemental.textContent || supplemental.innerHTML;
+                        
+                        // 只要內容包含最新的 select/option 列表
+                        if (rawHtml && rawHtml.indexOf('<option') !== -1) {
+                            // 1. 強行提取出最新被新增的那一個分類的 Value (ID) 與名稱
+                            // 因為最新加的一定在最下面，我們直接用正則或臨時創建元素來抓它
+                            var $tempSelect = $('<select>' + rawHtml + '</select>');
+                            var $lastOption = $tempSelect.find('option').last();
+                            var catId = $lastOption.val();
+                            var catName = $lastOption.text();
+
+                            if (catId && catName) {
+                                // 2. 檢查前端列表是否已經存在這項，沒有的話就立刻塞進最上面
+                                if ($('#in-product_cat-' + catId).length === 0) {
+                                    var newLiHtml = '<li id="product_cat-' + catId + '" class="popular-category">' +
+                                        '<label class="selectit"><input value="' + catId + '" type="checkbox" name="tax_input[product_cat][]" id="in-product_cat-' + catId + '" checked="checked"> ' + catName + '</label>' +
+                                        '</li>';
+                                    
+                                    // 塞入分類列表的最頂部
+                                    $('#product_catchecklist').prepend(newLiHtml);
+                                }
+                                
+                                // 3. 完美收尾：清空輸入框，隱藏載入中圖示
+                                $('#newproduct_cat').val('');
+                                $('#product_cat-ajax-nonce').siblings('.spinner').removeClass('is-active');
+                            }
                         }
-                    });
+                    }
+                } catch (e) {
+                    console.log('XML Patch parse error:', e);
                 }
-            }, 1200);
+            }
         });
     });
     </script>
     <?php
 }
-
-
- ?>
-
-
-
-
-
 
