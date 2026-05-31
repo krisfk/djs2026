@@ -1,5 +1,5 @@
-<?php
-session_start();
+<?php 
+// session_start();
 add_filter('jpeg_quality', function($arg){return 100;});
 
 add_action("init", function () {
@@ -726,29 +726,29 @@ add_action('woocommerce_product_bulk_edit_save', 'save_custom_field_product_bulk
       //     )
       // );
 
-      $response = wp_remote_post( "https://www.djsfans.com/api/v1/user/update_pts", array(
-      	'method' => 'POST',
-      	'timeout' => 45,
-      	'redirection' => 5,
-      	'httpversion' => '1.0',
-      	'blocking' => true,
-      	'headers' => array(
-            'Authorization' => 'Bearer '.$_SESSION['token'],
-            'Content-Type'  => 'application/json'
-        ),
-      	'body' =>
-        array( 'points' => ((int)$_SESSION['points']- (int)$_SESSION['use_pts']),
-                'remark' => 'djs online shop 消費使用pts',
-      	        'cookies' => array()
-          )
-      ));
+      // $response = wp_remote_post( "https://www.djsfans.com/api/v1/user/update_pts", array(
+      // 	'method' => 'POST',
+      // 	'timeout' => 45,
+      // 	'redirection' => 5,
+      // 	'httpversion' => '1.0',
+      // 	'blocking' => true,
+      // 	'headers' => array(
+      //       'Authorization' => 'Bearer '.$_SESSION['token'],
+      //       'Content-Type'  => 'application/json'
+      //   ),
+      // 	'body' =>
+      //   array( 'points' => ((int)$_SESSION['points']- (int)$_SESSION['use_pts']),
+      //           'remark' => 'djs online shop 消費使用pts',
+      // 	        'cookies' => array()
+      //     )
+      // ));
 
       ?>
       <!-- <script type="text/javascript">
-        console.log('<?php  echo $_SESSION['token']; ?>');
-        console.log('<?php  echo $_SESSION['points']; ?>');
-        console.log('<?php  echo $_SESSION['use_pts']; ?>');
-        console.log('<?php echo ((int)$_SESSION['points']- (int)$_SESSION['use_pts']); ?>');
+        console.log('<?php // echo $_SESSION['token']; ?>');
+        console.log('<?php // echo $_SESSION['points']; ?>');
+        console.log('<?php  //echo $_SESSION['use_pts']; ?>');
+        console.log('<?php //echo ((int)$_SESSION['points']- (int)$_SESSION['use_pts']); ?>');
         $(function () {
         	$.ajax({
           url: 'http://www.djsfans.com/api/v1/user/update_pts',
@@ -756,7 +756,7 @@ add_action('woocommerce_product_bulk_edit_save', 'save_custom_field_product_bulk
           beforeSend: function (xhr) {
          		 xhr.setRequestHeader('Authorization', 'Bearer '+'<?php echo $_SESSION['token']; ?>');
           },
-          data: {points:<?php echo ((int)$_SESSION['points']- (int)$_SESSION['use_pts']); ?>,remark:'djs online shop 消費使用pts'},
+          data: {points:<?php // echo ((int)$_SESSION['points']- (int)$_SESSION['use_pts']); ?>,remark:'djs online shop 消費使用pts'},
           success: function (data) {
        	 console.log(data);
           },
