@@ -680,22 +680,19 @@ add_action('woocommerce_product_bulk_edit_save', 'save_custom_field_product_bulk
      */
     function add_custom_fees( WC_Cart $cart ){
 
-      if($_SESSION['member_id'])
-      {
+      // if($_SESSION['member_id'])
+      // {
 
-        if($_SESSION['use_pts']) {
+      //   if($_SESSION['use_pts']) {
 
-          $use_pts = $_SESSION['use_pts'];
-          $discount = $cart->subtotal - $use_pts;
-          $cart->add_fee( '使用djsfans pts ('.$use_pts.'pts)('.$_SESSION['member_id'].')', -$use_pts);
+      //     $use_pts = $_SESSION['use_pts'];
+      //     $discount = $cart->subtotal - $use_pts;
+      //     $cart->add_fee( '使用djsfans pts ('.$use_pts.'pts)('.$_SESSION['member_id'].')', -$use_pts);
 
-        }
+      //   }
 
-        // if( $cart->cart_contents_count < 3 ){
-        //     return;
-        // }
 
-      }
+      // }
     }
 
     // if(is_order_received_page())
