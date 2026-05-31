@@ -52,6 +52,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 				{
 					$have_mask_item=true;
 				}
+			}
 
 
 				// echo '<div style="display:none;">';
