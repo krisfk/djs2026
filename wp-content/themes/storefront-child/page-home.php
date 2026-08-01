@@ -101,12 +101,17 @@ echo do_shortcode('[products category="live-new-product" limit="18" columns="4" 
 ?>
 
 
-        <h2 class="page-title home-cate-10">- 最新系列 - </h2>
+        <!-- <h2 class="page-title home-cate-10">- 最新系列 - </h2> -->
         <?php
-echo do_shortcode('[slick-carousel-slider category="146" design="design-6" slidestoshow="3"]');
-echo do_shortcode('[slick-carousel-slider category="147" design="design-6" slidestoshow="3"]');
-echo do_shortcode('[slick-carousel-slider category="148" design="design-6" slidestoshow="3"]');
-?><?php $terms=get_terms(array('taxonomy'=> 'product_tag', 'hide_empty'=> false));
+// echo do_shortcode('[slick-carousel-slider category="146" design="design-6" slidestoshow="3"]');
+// echo do_shortcode('[slick-carousel-slider category="147" design="design-6" slidestoshow="3"]');
+// echo do_shortcode('[slick-carousel-slider category="148" design="design-6" slidestoshow="3"]');
+?>
+
+
+<?php $terms=get_terms(array('taxonomy'=> 'product_tag', 'hide_empty'=> false));
+
+
 
 ?><h2 class="page-title home-cate-11">- 角色分類 - </h2>
         <div class="product-tags"><?php foreach ($terms as $term) {
