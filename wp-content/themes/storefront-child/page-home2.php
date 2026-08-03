@@ -14,41 +14,43 @@ get_header();
 ?>
 
 <script type="text/javascript">
+$(function() {
 
-$(function(){
+    $('.home-page-shortcut-btn').click(function(e) {
+        e.preventDefault();
+        $(this).toggleClass('active');
 
-$('.home-page-shortcut-btn').click(function(e){
-e.preventDefault();
-$(this).toggleClass('active');
-
-if($(this).hasClass('active'))
-{
-	$('.home-page-shortcut-ul').fadeIn(300);
-}
-else{
-	$('.home-page-shortcut-ul').fadeOut(0);
-}
+        if ($(this).hasClass('active')) {
+            $('.home-page-shortcut-ul').fadeIn(300);
+        } else {
+            $('.home-page-shortcut-ul').fadeOut(0);
+        }
 
 
 
-});
+    });
 
-$('.home-cate-shortcut-link').click(function(e){
+    $('.home-cate-shortcut-link').click(function(e) {
 
-	e.preventDefault();
-	$('.home-page-shortcut-btn').removeClass('active');
-	$('.home-page-shortcut-ul').fadeOut(0);
-	var idx=$(this).attr('data-link');
-	// alert(idx);
-	$('body,html').stop().animate({scrollTop: $('.home-cate-'+idx).offset().top-10},{duration:500,complete:function(){}} );
+        e.preventDefault();
+        $('.home-page-shortcut-btn').removeClass('active');
+        $('.home-page-shortcut-ul').fadeOut(0);
+        var idx = $(this).attr('data-link');
+        // alert(idx);
+        $('body,html').stop().animate({
+            scrollTop: $('.home-cate-' + idx).offset().top - 10
+        }, {
+            duration: 500,
+            complete: function() {}
+        });
 
 
 
 
-})
+    })
 });
 </script>
-<div class="home-page-shortcut-blk"><?php $query=new WP_Query(array('post_type'=> 'hp_products_grp'));
+<div class="home-page-shortcut-blk"><?php $query=new WP_Query(array('post_type'=> 'hp_products_grp', 'posts_per_page'   => -1));
 
 if ($query->have_posts()) {
   echo'<ul class="home-page-shortcut-ul">';
@@ -65,25 +67,61 @@ if ($query->have_posts()) {
   echo'</ul>';
 }
 
-?><a href="#"class="home-page-shortcut-btn">首頁捷徑</a></div><div id="primary"class="content-area"><main id="main"class="site-main"role="main"><?php if (have_posts()) : get_template_part('loop');
-else : get_template_part('content', 'none');
-endif;
+?><a href="#" class="home-page-shortcut-btn">首頁捷徑</a></div>
+<div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+
+        <?php
+	// if (have_posts()) : get_template_part('loop');
+// else : get_template_part('content', 'none');
+// endif;
 ?><?php //echo do_shortcode( '[instagram-feed hashtag="#alice"]' );
 //[instagram-feed user="djsshopping" id="1297773553" includewords="#alice" num=1 cols=1]
 // echo do_shortcode('[instagram-feed user="djsshopping" id="1297773553" includewords="#妙妙貓" cols=4 num=4 media=photos showheader=false showcaption=false]');
-?><h2 class="page-title home-cate-10">- 最新系列 - </h2><?php echo do_shortcode('[slick-carousel-slider category="148" design="design-6" slidestoshow="3"]');
-echo do_shortcode('[slick-carousel-slider category="146" design="design-6" slidestoshow="3"]');
-echo do_shortcode('[slick-carousel-slider category="147" design="design-6" slidestoshow="3"]');
-?><?php $terms=get_terms(array('taxonomy'=> 'product_tag', 'hide_empty'=> false));
+?>
 
-?><h2 class="page-title home-cate-11">- 角色分類 - </h2><div class="product-tags"><?php foreach ($terms as $term) {
-  ?><a href="<?php echo get_term_link($term->term_id, 'product_tag'); ?> "rel="tag"><?php echo $term->name;
+        <!-- <h4 style="text-align:center;margin-top:1rem;color:#d73b89;">🇯🇵日本連線期間，如購買請直接銀行過數/FPS，以節省信用咭支付的手續費和轉帳延遲。Thank
+            you🙇🏻‍♂️</h4> -->
+
+
+
+
+
+        <?php
+echo '	<div class="clear-line"></div>';
+echo'<h2 class="page-title home-cate-'.get_the_ID().'">- 最新訂貨 - <a href="https://www.djs.com.hk/product-category/live-new-product/">View all </a> -</h2>';
+echo do_shortcode('[products category="live-new-product" limit="18" columns="4" visibility="visible" orderby="post_date" order="DESC"]');
+?>
+
+
+        <?php
+// echo '	<div class="clear-line"></div>';
+// echo'<h2 class="page-title home-cate-'.get_the_ID().'">- 🇯🇵日本即時連線🛍GOGOGO - <a href="https://www.djs.com.hk/product-category/jpconnect/">View all </a> -</h2>';
+// echo do_shortcode('[products category="jpconnect" limit="18" columns="4" visibility="visible" orderby="post_date" order="DESC"]');
+?>
+
+
+        <!-- <h2 class="page-title home-cate-10">- 最新系列 - </h2> -->
+        <?php
+// echo do_shortcode('[slick-carousel-slider category="146" design="design-6" slidestoshow="3"]');
+// echo do_shortcode('[slick-carousel-slider category="147" design="design-6" slidestoshow="3"]');
+// echo do_shortcode('[slick-carousel-slider category="148" design="design-6" slidestoshow="3"]');
+?>
+
+
+<?php $terms=get_terms(array('taxonomy'=> 'product_tag', 'hide_empty'=> false));
+
+
+
+?><h2 class="page-title home-cate-11">- 角色分類 - </h2>
+        <div class="product-tags"><?php foreach ($terms as $term) {
+  ?><a href="<?php echo get_term_link($term->term_id, 'product_tag'); ?> " rel="tag"><?php echo $term->name;
   ?></a><?php
 }
 
 ?></div>
 
-<?php $query=new WP_Query(array('post_type'=> 'hp_products_grp'));
+        <?php $query=new WP_Query(array('post_type'=> 'hp_products_grp','posts_per_page'   => -1));
 
 if ($query->have_posts()) {
   while ($query->have_posts()) {
@@ -94,11 +132,12 @@ if ($query->have_posts()) {
     echo'<h2 class="page-title home-cate-'.get_the_ID().'">- '.get_the_title().' - <a href="'.get_field('link_to').'">View all </a> -</h2>';
     $group_tag=get_field('group_tag')->slug;
     $group_category=get_field('group_category')->slug;
-    echo do_shortcode('[products tag="'.$group_tag.'" category="'.$group_category.'" limit="18" columns="6" visibility="visible" orderby="menu_order" order="ASC"]');
+    echo do_shortcode('[products tag="'.$group_tag.'" category="'.$group_category.'" limit="18" columns="6" visibility="visible" orderby="post_date" order="DESC"]');
   }
 }
 
-?></main></div>
-<img src="https://cdns7.shopdisney.disney.co.jp/is/image/ShopDisneyJPPI/4936313903980-3" alt="">
-<?php do_action('storefront_sidebar');
+?>
+    </main>
+</div><?php do_action('storefront_sidebar');
+
 get_footer();
