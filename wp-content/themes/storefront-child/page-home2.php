@@ -88,9 +88,9 @@ if ($query->have_posts()) {
             <?php
             // Example image URLs for slider; replace with your actual images or dynamic WP loop as needed
             $slider_images = array(
-                get_stylesheet_directory_uri() . 'https://djs.com.hk/wp-content/uploads/2022/02/disney-nail-product-banner.jpg',
-                get_stylesheet_directory_uri() . 'https://djs.com.hk/wp-content/uploads/2022/02/disney-nail-product-banner.jpg',
-                get_stylesheet_directory_uri() . 'https://djs.com.hk/wp-content/uploads/2022/02/disney-nail-product-banner.jpg',
+  'https://djs.com.hk/wp-content/uploads/2022/02/disney-nail-product-banner.jpg',
+           'https://djs.com.hk/wp-content/uploads/2022/02/disney-nail-product-banner.jpg',
+          'https://djs.com.hk/wp-content/uploads/2022/02/disney-nail-product-banner.jpg',
             );
             ?>
             <div class="slick-slider">
