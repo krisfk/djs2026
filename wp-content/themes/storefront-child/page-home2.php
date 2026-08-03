@@ -83,8 +83,7 @@ if ($query->have_posts()) {
         <!-- <h4 style="text-align:center;margin-top:1rem;color:#d73b89;">🇯🇵日本連線期間，如購買請直接銀行過數/FPS，以節省信用咭支付的手續費和轉帳延遲。Thank
             you🙇🏻‍♂️</h4> -->
 
-        <h2 class="page-title home-cate-10">- 最新系列 - </h2>
-        <div class="home-slick-slider" style="margin-bottom:30px;">
+            <div class="home-slick-slider" style="margin-bottom:30px;">
             <?php
             // Example image URLs for slider; replace with your actual images or dynamic WP loop as needed
             $slider_images = array(
@@ -101,6 +100,10 @@ if ($query->have_posts()) {
                 <?php endforeach; ?>
             </div>
         </div>
+
+        
+        <h2 class="page-title home-cate-10">- 最新系列 - </h2>
+      
         <script type="text/javascript">
         jQuery(document).ready(function($){
             if ($('.slick-slider').length && typeof $.fn.slick !== 'undefined') {
