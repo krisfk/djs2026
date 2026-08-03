@@ -83,9 +83,48 @@ if ($query->have_posts()) {
         <!-- <h4 style="text-align:center;margin-top:1rem;color:#d73b89;">🇯🇵日本連線期間，如購買請直接銀行過數/FPS，以節省信用咭支付的手續費和轉帳延遲。Thank
             you🙇🏻‍♂️</h4> -->
 
+        <h2 class="page-title home-cate-10">- 最新系列 - </h2>
+        <div class="home-slick-slider" style="margin-bottom:30px;">
+            <?php
+            // Example image URLs for slider; replace with your actual images or dynamic WP loop as needed
+            $slider_images = array(
+                get_stylesheet_directory_uri() . '/images/slider1.jpg',
+                get_stylesheet_directory_uri() . '/images/slider2.jpg',
+                get_stylesheet_directory_uri() . '/images/slider3.jpg',
+            );
+            ?>
+            <div class="slick-slider">
+                <?php foreach($slider_images as $img_url): ?>
+                    <div>
+                        <img src="<?php echo esc_url($img_url); ?>" style="width:100%;height:auto;" />
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <script type="text/javascript">
+        jQuery(document).ready(function($){
+            if ($('.slick-slider').length && typeof $.fn.slick !== 'undefined') {
+                $('.slick-slider').slick({
+                    dots: true,
+                    infinite: true,
+                    speed: 500,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 4000,
+                    arrows: true,
+                });
+            }
+        });
+        </script>
+        <style>
+        .home-slick-slider .slick-slider {max-width: 1000px; margin: 0 auto;}
+        .home-slick-slider .slick-dots {bottom: 10px;}
+        .home-slick-slider img {border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.13);}
+        </style>
 
 
-test
+            
 
         <?php
 echo '	<div class="clear-line"></div>';
