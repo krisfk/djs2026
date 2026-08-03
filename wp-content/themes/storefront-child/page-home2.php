@@ -85,7 +85,7 @@ if ($query->have_posts()) {
 
 
 
-
+test
 
         <?php
 echo '	<div class="clear-line"></div>';
