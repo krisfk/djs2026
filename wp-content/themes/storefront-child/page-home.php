@@ -14,6 +14,10 @@ get_header();
 ?>
 
 <style>
+
+  .home2-banner-image-list{
+    margin-top:2em;
+  }
     .home2-banner-image-list ul {
         display: flex;
         flex-wrap: wrap;
