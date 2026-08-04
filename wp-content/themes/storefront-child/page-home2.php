@@ -138,15 +138,13 @@ if ($query->have_posts()) {
                     },
                     {
                         breakpoint: 480,
-                        settings: { slidesToShow: 1 }
+                        settings: { slidesToShow: 4 }
                     }
                 ]
             });
         });
         </script>
         <!-- Slick Slider Banner End -->
-   
-
    
             
 
