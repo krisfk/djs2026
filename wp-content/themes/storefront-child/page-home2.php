@@ -58,10 +58,10 @@ if ($banner_query->have_posts()) :
  
     while ($banner_query->have_posts()) : $banner_query->the_post();
 
-    $banner_img = get_field('banner_img');
-    if (!empty($banner_img)) {
-        echo '<img src="' . esc_url($banner_img) . '" alt="' . esc_attr(get_the_title()) . '" style="width:100%;height:auto;display:block;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:16px;">';
-    }
+    // $banner_img = get_field('banner_img');
+    // if (!empty($banner_img)) {
+    //     echo '<img src="' . esc_url($banner_img) . '" alt="' . esc_attr(get_the_title()) . '" style="width:100%;height:auto;display:block;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:16px;">';
+    // }
 
     endwhile;
  
