@@ -91,7 +91,7 @@ if ($query->have_posts()) {
         }
         .slick-banner-group {
             width: 100%;
-            margin-bottom: 16px;
+            /* margin-bottom: 16px; */ /* Removed as per instruction */
             display: flex;
             justify-content: center;
         }
@@ -187,6 +187,7 @@ if ($query->have_posts()) {
         });
         </script>
         <!-- Slick Slider Banner End -->
+ 
   
   
 
