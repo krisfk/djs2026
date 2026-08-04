@@ -91,27 +91,19 @@ if ($query->have_posts()) {
         }
         .slick-banner-group {
             width: 100%;
-            /* margin-bottom: 16px; */ /* Removed as per instruction */
             display: flex;
             justify-content: center;
         }
         .slick-banner {
             width: 100%;
-            display: flex;
-            justify-content: center;
         }
-        /* 
-         * Add margin between slides using slick's custom CSS hooks.
-         * .slick-slide:not(:last-child) applies margin to all except the last in the row.
-         */
         .slick-banner .slick-slide {
             max-width: 342px;
-            margin: 0 6px; /* Add horizontal margin between slides */
+            margin: 0 6px;
             display: flex !important;
             justify-content: center;
             box-sizing: border-box;
         }
-        /* Adjust for correct alignment with margins at container level */
         .slick-banner {
             margin-left: -6px;
             margin-right: -6px;
@@ -122,17 +114,47 @@ if ($query->have_posts()) {
             max-width: 342px;
             margin: 0 auto;
         }
-        /* Hide slick dots */
         .slick-dots {
             display: none !important;
         }
         .slick-dotted.slick-slider {
-    margin-bottom: 0.7em;
-}
+            margin-bottom: 0.7em;
+        }
+
+        /* --- Mobile Fixes --- */
+        @media (max-width: 767px) {
+            .slick-banner-wrapper {
+                max-width: 100vw;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .slick-banner-group {
+                flex-direction: column;
+                align-items: stretch;
+                width: 100vw;
+                margin: 0;
+                padding: 0;
+            }
+            .slick-banner {
+                margin-left: 0;
+                margin-right: 0;
+                max-width: 100vw;
+                padding: 0;
+            }
+            .slick-banner .slick-slide {
+                max-width: 100vw;
+                margin: 0;
+                padding: 0;
+            }
+            .slick-banner img {
+                max-width: 100vw;
+                width: 100vw;
+            }
+        }
         </style>
         <div class="slick-banner-wrapper">
             <?php
-            $slides_per_group = 4;
+            // Use just one slick slider for best mobile support.
             $banner_imgs = [
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
@@ -145,61 +167,49 @@ if ($query->have_posts()) {
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg"
             ];
-            $total_slides = count($banner_imgs);
-            $num_groups = ceil($total_slides / $slides_per_group);
-
-            for ($g = 0; $g < $num_groups; $g++) {
-                echo '<div class="slick-banner-group">';
-                echo '<div class="slick-banner">';
-                for ($i = $g * $slides_per_group; $i < min(($g + 1) * $slides_per_group, $total_slides); $i++) {
-                    $img_url = $banner_imgs[$i];
-                    $alt = 'Genie Banner '.($i + 1);
-                    echo '<div><img src="' . $img_url . '" alt="' . htmlspecialchars($alt) . '"></div>';
-                }
-                echo '</div>';
-                echo '</div>';
+            echo '<div class="slick-banner">';
+            foreach ($banner_imgs as $idx => $img_url) {
+                $alt = 'Genie Banner '.($idx + 1);
+                echo '<div><img src="' . $img_url . '" alt="' . htmlspecialchars($alt) . '"></div>';
             }
+            echo '</div>';
             ?>
         </div>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
         <script>
         jQuery(document).ready(function($){
-            var slidesPerGroup = 4;
-
-            $('.slick-banner').each(function(){
-                var slideCount = $(this).children().length;
-                $(this).slick({
-                    dots: true,
-                    infinite: true,
-                    speed: 500,
-                    slidesToShow: Math.min(slideCount, slidesPerGroup),
-                    slidesToScroll: 1,
-                    arrows: true,
-                    autoplay: true,
-                    autoplaySpeed: 4000,
-                    centerMode: true,
-                    centerPadding: '0', // Ensure full centering
-                    responsive: [
-                        {
-                            breakpoint: 1200,
-                            settings: { slidesToShow: Math.min(slideCount, 3), centerMode: true, centerPadding: '0' }
-                        },
-                        {
-                            breakpoint: 768,
-                            settings: { slidesToShow: Math.min(slideCount, 2), centerMode: true, centerPadding: '0' }
-                        },
-                        {
-                            breakpoint: 480,
-                            settings: { slidesToShow: Math.min(slideCount, 1), centerMode: true, centerPadding: '0' }
-                        }
-                    ]
-                });
+            // Only use one slick-slider to avoid duplication and stacking on mobile.
+            var slideCount = $('.slick-banner').children().length;
+            $('.slick-banner').slick({
+                dots: false,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                arrows: true,
+                autoplay: true,
+                autoplaySpeed: 4000,
+                centerMode: true,
+                centerPadding: '0',
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: { slidesToShow: 3, centerMode: true, centerPadding: '0' }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: { slidesToShow: 2, centerMode: false, centerPadding: '0' }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: { slidesToShow: 1, centerMode: false, centerPadding: '0' }
+                    }
+                ]
             });
         });
         </script>
         <!-- Slick Slider Banner End -->
- 
   
   
 
