@@ -72,25 +72,31 @@ if ($query->have_posts()) {
     <main id="main" class="site-main" role="main">
 
 
-
-
         <style>
         .home-banner-grid {
             display: flex;
             flex-direction: column;
             gap: 16px;
-            /* margin-bottom: 30px; */
         }
         .home-banner-row {
             display: flex;
             width: 100%;
             gap: 16px;
-            /* margin-bottom: 16px; */
         }
         .home-banner-item {
-            flex: 1 1 0px;
+            flex: 0 0 19.2%;
+            max-width: 19.2%;
             min-width: 0;
             text-align: center;
+        }
+        @media (max-width: 1200px) {
+            .home-banner-row {
+                gap: 12px;
+            }
+            .home-banner-item {
+                flex: 0 0 24%;
+                max-width: 24%;
+            }
         }
         @media (max-width: 900px) {
             .home-banner-row {
@@ -99,7 +105,6 @@ if ($query->have_posts()) {
             .home-banner-item {
                 flex: 0 0 32%;
                 max-width: 32%;
-                /* margin-bottom: 12px; */
             }
         }
         @media (max-width: 600px) {
@@ -111,12 +116,9 @@ if ($query->have_posts()) {
                 gap: 8px;
             }
             .home-banner-item {
-                flex: 0 0 32%;
-                max-width: 32%;
-                /* margin-bottom: 8px; */
+                flex: 0 0 100%;
+                max-width: 100%;
             }
-
-            
         }
         </style>
 
@@ -124,25 +126,24 @@ if ($query->have_posts()) {
         <?php
         $banner_img_url = "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg";
         for ($i = 1; $i <= 12; $i++) {
-            // On all screens: 3 banners per row, since CSS forces .home-banner-item to 32% width (3 in a row with spacing)
-            if (($i - 1) % 3 === 0) {
+            // On desktop: 5 banners per row
+            if (($i - 1) % 5 === 0) {
                 echo '<div class="home-banner-row">';
             }
             echo '<div class="home-banner-item">';
             echo '<img src="' . esc_url($banner_img_url) . '" alt="Banner ' . $i . '" style="width:100%; max-width:100%; height:auto; border-radius: 8px;">';
             echo '</div>';
-            if ($i % 3 === 0) {
+            if ($i % 5 === 0) {
                 echo '</div>';
             }
         }
         // Close the last row if not already closed
-        if (($i - 1) % 3 !== 0) {
+        if (($i - 1) % 5 !== 0) {
             echo '</div>';
         }
         ?>
         </div>
-  
-  
+
 
 
         <?php
