@@ -35,7 +35,7 @@ get_header();
     }
     @media (max-width: 480px) {
         .home2-banner-image-list li {
-            flex: 1 0 31%;
+            flex: 1 0 30%;
             max-width: 33%;
         }
     }
