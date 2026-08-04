@@ -113,6 +113,10 @@ if ($query->have_posts()) {
             max-width: 342px;
             margin: 0 auto;
         }
+        /* Hide slick dots */
+        .slick-dots {
+            display: none !important;
+        }
         </style>
         <div class="slick-banner-wrapper">
             <?php
@@ -183,6 +187,7 @@ if ($query->have_posts()) {
         });
         </script>
         <!-- Slick Slider Banner End -->
+  
   
 
 
