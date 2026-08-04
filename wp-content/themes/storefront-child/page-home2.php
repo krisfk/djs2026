@@ -45,7 +45,7 @@ get_header();
 <?php
 // WP_Query: Fetch posts from the custom post type 'banners'
 $args = array(
-    'post_type'      => 'banners',
+    'post_type'      => 'banner',
     'posts_per_page' => -1,
     'post_status'    => 'publish',
     'orderby'        => 'date',
@@ -53,7 +53,7 @@ $args = array(
 );
 $banner_query = new WP_Query($args);
 
-echo 999;
+// echo 999;
 if ($banner_query->have_posts()) :
  
     while ($banner_query->have_posts()) : $banner_query->the_post();
