@@ -79,29 +79,35 @@ if ($query->have_posts()) {
             display: flex;
             flex-direction: column;
             gap: 16px;
-            /* margin-bottom: 30px; */
         }
         .home-banner-row {
             display: flex;
             width: 100%;
             gap: 16px;
-            /* margin-bottom: 16px; */
         }
         .home-banner-item {
             flex: 1 1 0px;
             min-width: 0;
             text-align: center;
         }
-        @media (max-width: 900px) {
+        /* Desktop: 5 per row */
+        @media (min-width: 901px) {
+            .home-banner-item {
+                flex: 0 0 19%;
+                max-width: 19%;
+            }
+        }
+        /* Tablet: 3 per row for width between 600px and 900px */
+        @media (max-width: 900px) and (min-width:601px) {
             .home-banner-row {
                 gap: 12px;
             }
             .home-banner-item {
                 flex: 0 0 32%;
                 max-width: 32%;
-                /* margin-bottom: 12px; */
             }
         }
+        /* Mobile: 3 per row for width <= 600px */
         @media (max-width: 600px) {
             .home-banner-grid
             {
@@ -113,35 +119,39 @@ if ($query->have_posts()) {
             .home-banner-item {
                 flex: 0 0 32%;
                 max-width: 32%;
-                /* margin-bottom: 8px; */
             }
-
-            
         }
         </style>
 
         <div class="home-banner-grid">
         <?php
         $banner_img_url = "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg";
-        for ($i = 1; $i <= 12; $i++) {
-            // On all screens: 3 banners per row, since CSS forces .home-banner-item to 32% width (3 in a row with spacing)
-            if (($i - 1) % 3 === 0) {
+        $total_banners = 12;
+
+        // Rows are 5 items wide by default (desktop), 3 on mobile/tablet via CSS.
+        $banners_per_row_desktop = 5;
+
+        for ($i = 1; $i <= $total_banners; $i++) {
+            // Open a row every 5 banners for desktop
+            if (($i - 1) % $banners_per_row_desktop === 0) {
                 echo '<div class="home-banner-row">';
             }
+
             echo '<div class="home-banner-item">';
             echo '<img src="' . esc_url($banner_img_url) . '" alt="Banner ' . $i . '" style="width:100%; max-width:100%; height:auto; border-radius: 8px;">';
             echo '</div>';
-            if ($i % 3 === 0) {
+
+            // Close the row after 5 banners, or at the end
+            if ($i % $banners_per_row_desktop === 0) {
                 echo '</div>';
             }
         }
-        // Close the last row if not already closed
-        if (($i - 1) % 3 !== 0) {
+        // Close the last row if it wasn't closed (i.e., if $total_banners is not a multiple of $banners_per_row_desktop)
+        if (($i - 1) % $banners_per_row_desktop !== 0) {
             echo '</div>';
         }
         ?>
         </div>
-  
   
 
 
