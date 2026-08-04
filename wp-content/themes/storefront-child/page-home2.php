@@ -89,6 +89,15 @@ if ($query->have_posts()) {
             <div class="slick-banner">
                 <div>
                     <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner">
+                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner">
+
+                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner">
+
+                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner">
+
+                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner">
+
+                    
                 </div>
                 <!-- Add more <div><img ...></div> here for additional banners -->
             </div>
