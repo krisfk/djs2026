@@ -69,12 +69,11 @@ if ($query->have_posts()) {
 
 ?>
 
-てst
 <a href="#" class="home-page-shortcut-btn">首頁捷徑</a></div>
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
 
-
+test
 
 
   
