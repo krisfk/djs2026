@@ -74,31 +74,6 @@ if ($query->have_posts()) {
 test
 
         
-        <h2 class="page-title home-cate-10">- 最新系列 - </h2>
-      
-        <script type="text/javascript">
-        jQuery(document).ready(function($){
-            if ($('.slick-slider').length && typeof $.fn.slick !== 'undefined') {
-                $('.slick-slider').slick({
-                    dots: true,
-                    infinite: true,
-                    speed: 500,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 4000,
-                    arrows: true,
-                });
-            }
-        });
-        </script>
-        <style>
-        .home-slick-slider .slick-slider {max-width: 1000px; margin: 0 auto;}
-        .home-slick-slider .slick-dots {bottom: 10px;}
-        .home-slick-slider img {border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.13);}
-        </style>
-
-
             
 
         <?php
