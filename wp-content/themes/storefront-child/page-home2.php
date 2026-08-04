@@ -155,11 +155,13 @@ if ($query->have_posts()) {
                     },
                     {
                         breakpoint: 480,
-                        settings: { slidesToShow: 1 }
+                        settings: { 
+                            slidesToShow: 1 
+                        }
                     }
                 ]
             });
-            // Extra banner (if exists)
+            // Extra banner (if exists), show max 4 slides on mobile
             if ($('.slick-banner-extra').length > 0) {
                 $('.slick-banner-extra').slick({
                     dots: true,
@@ -181,15 +183,43 @@ if ($query->have_posts()) {
                         },
                         {
                             breakpoint: 480,
-                            settings: { slidesToShow: 1 }
+                            settings: { 
+                                slidesToShow: 1 
+                            }
                         }
                     ]
+                });
+
+                // Hide extra slides on mobile so never more than 4, even if slick would allow more
+                function limitExtraSlidesMobile() {
+                    var isMobile = window.innerWidth <= 480;
+                    if (isMobile) {
+                        $('.slick-banner-extra .slick-slide').each(function(idx, el){
+                            if(idx >= 4){
+                                $(el).hide();
+                            } else {
+                                $(el).show();
+                            }
+                        });
+                    } else {
+                        $('.slick-banner-extra .slick-slide').show();
+                    }
+                }
+                // Run on load and resize
+                $(window).on('resize', function(){
+                    limitExtraSlidesMobile();
+                });
+                limitExtraSlidesMobile();
+
+                // Also after slick changes slides
+                $('.slick-banner-extra').on('setPosition', function(){
+                    limitExtraSlidesMobile();
                 });
             }
         });
         </script>
         <!-- Slick Slider Banner End -->
-            
+
 
         <?php
 echo '	<div class="clear-line"></div>';
