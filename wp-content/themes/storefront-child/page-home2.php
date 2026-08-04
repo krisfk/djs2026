@@ -83,7 +83,7 @@ if ($query->have_posts()) {
             <div class="slick-slider">
                 <?php foreach($slider_images as $img_url): ?>
                     <div>
-                        <img style="width:100px;" src="<?php echo esc_url($img_url); ?>" style="width:100%;height:auto;" />
+                        <img style="width:100%;height:auto;" src="<?php echo esc_url($img_url); ?>" style="width:100%;height:auto;" />
                     </div>
                 <?php endforeach; ?>
             </div>
