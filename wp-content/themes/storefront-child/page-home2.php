@@ -86,50 +86,45 @@ if ($query->have_posts()) {
             transform: none;
             box-sizing: border-box;
         }
-        .slick-banner, .slick-banner-extra {
+        .slick-banner-group {
             width: 100%;
+            margin-bottom: 16px;
         }
-        .slick-banner img, .slick-banner-extra img {
+        .slick-banner img {
             width: 100%;
             display: block;
         }
         </style>
         <div class="slick-banner-wrapper">
-            <div class="slick-banner">
-                <div>
-                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner 1">
-                </div>
-                <div>
-                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner 2">
-                </div>
-                <div>
-                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner 3">
-                </div>
-                <div>
-                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner 4">
-                </div>
-            </div>
             <?php
+            // Set slides per group
+            $slides_per_group = 4;
             // Define banners as an array for dynamism or fetch dynamically. For demo, we'll statically declare them.
             $banner_imgs = [
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
-                "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",  "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
+                "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
+                "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg"
                 // Add more image URLs if there are more banners
             ];
-            // Only print the extra slider if more than 4 banners
-            if (count($banner_imgs) > 4) {
-                echo '<div class="slick-banner-extra" style="margin-top:16px;">';
-                // Output slides after the first four
-                for ($i = 4; $i < count($banner_imgs); $i++) {
-                    echo '<div><img src="'.$banner_imgs[$i].'" alt="Genie Banner '.($i+1).'"></div>';
+            $total_slides = count($banner_imgs);
+            $num_groups = ceil($total_slides / $slides_per_group);
+
+            for ($g = 0; $g < $num_groups; $g++) {
+                echo '<div class="slick-banner-group">';
+                echo '<div class="slick-banner">';
+                for ($i = $g * $slides_per_group; $i < min(($g + 1) * $slides_per_group, $total_slides); $i++) {
+                    $img_url = $banner_imgs[$i];
+                    $alt = 'Genie Banner '.($i + 1);
+                    echo '<div><img src="' . $img_url . '" alt="' . htmlspecialchars($alt) . '"></div>';
                 }
+                echo '</div>';
                 echo '</div>';
             }
             ?>
@@ -138,40 +133,16 @@ if ($query->have_posts()) {
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
         <script>
         jQuery(document).ready(function($){
-            // Main banner (first 4)
-            $('.slick-banner').slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                arrows: true,
-                autoplay: true,
-                autoplaySpeed: 4000,
-                responsive: [
-                    {
-                        breakpoint: 1200,
-                        settings: { slidesToShow: 3 }
-                    },
-                    {
-                        breakpoint: 768,
-                        settings: { slidesToShow: 2 }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: { 
-                            slidesToShow: 3 // Changed from 1 to 4 for mobile
-                        }
-                    }
-                ]
-            });
-            // Extra banner (if exists), show max 4 slides on mobile
-            if ($('.slick-banner-extra').length > 0) {
-                $('.slick-banner-extra').slick({
+            // Slides per group (must match the PHP variable for desktop)
+            var slidesPerGroup = 4;
+
+            $('.slick-banner').each(function(){
+                var slideCount = $(this).children().length;
+                $(this).slick({
                     dots: true,
                     infinite: true,
                     speed: 500,
-                    slidesToShow: 5,
+                    slidesToShow: Math.min(slideCount, slidesPerGroup),
                     slidesToScroll: 1,
                     arrows: true,
                     autoplay: true,
@@ -179,47 +150,19 @@ if ($query->have_posts()) {
                     responsive: [
                         {
                             breakpoint: 1200,
-                            settings: { slidesToShow: 3 }
+                            settings: { slidesToShow: Math.min(slideCount, 3) }
                         },
                         {
                             breakpoint: 768,
-                            settings: { slidesToShow: 2 }
+                            settings: { slidesToShow: Math.min(slideCount, 2) }
                         },
                         {
                             breakpoint: 480,
-                            settings: { 
-                                slidesToShow: 3 // Changed from 1 to 4 for mobile
-                            }
+                            settings: { slidesToShow: Math.min(slideCount, 1) }
                         }
                     ]
                 });
-
-                // Hide extra slides on mobile so never more than 4, even if slick would allow more
-                function limitExtraSlidesMobile() {
-                    var isMobile = window.innerWidth <= 480;
-                    if (isMobile) {
-                        $('.slick-banner-extra .slick-slide').each(function(idx, el){
-                            if(idx >= 4){
-                                $(el).hide();
-                            } else {
-                                $(el).show();
-                            }
-                        });
-                    } else {
-                        $('.slick-banner-extra .slick-slide').show();
-                    }
-                }
-                // Run on load and resize
-                $(window).on('resize', function(){
-                    limitExtraSlidesMobile();
-                });
-                limitExtraSlidesMobile();
-
-                // Also after slick changes slides
-                $('.slick-banner-extra').on('setPosition', function(){
-                    limitExtraSlidesMobile();
-                });
-            }
+            });
         });
         </script>
         <!-- Slick Slider Banner End -->
