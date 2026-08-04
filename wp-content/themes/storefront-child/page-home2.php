@@ -71,23 +71,7 @@ if ($query->have_posts()) {
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
 
-
-            <div class="home-slick-slider" style="margin-bottom:30px;">
-            <?php
-            $slider_images = array(
-  'https://djs.com.hk/wp-content/uploads/2022/02/disney-nail-product-banner.jpg',
-           'https://djs.com.hk/wp-content/uploads/2022/02/disney-nail-product-banner.jpg',
-          'https://djs.com.hk/wp-content/uploads/2022/02/disney-nail-product-banner.jpg',
-            );
-            ?>
-            <div class="slick-slider">
-                <?php foreach($slider_images as $img_url): ?>
-                    <div>
-                        <img style="width:100%;height:auto;" src="<?php echo esc_url($img_url); ?>" style="width:100%;height:auto;" />
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
+test
 
         
         <h2 class="page-title home-cate-10">- 最新系列 - </h2>
@@ -119,24 +103,11 @@ if ($query->have_posts()) {
 
         <?php
 echo '	<div class="clear-line"></div>';
-echo'<h2 class="page-title home-cate-'.get_the_ID().'">- 最新訂貨 - <a href="https://www.djs.com.hk/product-category/live-new-product/">View all </a> -</h2>';
+echo'<h2 class="page-title hosme-cate-'.get_the_ID().'">- 最新訂貨 - <a href="https://www.djs.com.hk/product-category/live-new-product/">View all </a> -</h2>';
 echo do_shortcode('[products category="live-new-product" limit="18" columns="4" visibility="visible" orderby="post_date" order="DESC"]');
 ?>
 
 
-        <?php
-// echo '	<div class="clear-line"></div>';
-// echo'<h2 class="page-title home-cate-'.get_the_ID().'">- 🇯🇵日本即時連線🛍GOGOGO - <a href="https://www.djs.com.hk/product-category/jpconnect/">View all </a> -</h2>';
-// echo do_shortcode('[products category="jpconnect" limit="18" columns="4" visibility="visible" orderby="post_date" order="DESC"]');
-?>
-
-
-        <!-- <h2 class="page-title home-cate-10">- 最新系列 - </h2> -->
-        <?php
-// echo do_shortcode('[slick-carousel-slider category="146" design="design-6" slidestoshow="3"]');
-// echo do_shortcode('[slick-carousel-slider category="147" design="design-6" slidestoshow="3"]');
-// echo do_shortcode('[slick-carousel-slider category="148" design="design-6" slidestoshow="3"]');
-?>
 
 
 <?php $terms=get_terms(array('taxonomy'=> 'product_tag', 'hide_empty'=> false));
