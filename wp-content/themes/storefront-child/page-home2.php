@@ -25,9 +25,13 @@ $(function() {
         } else {
             $('.home-page-shortcut-ul').fadeOut(0);
         }
+
+
+
     });
 
     $('.home-cate-shortcut-link').click(function(e) {
+
         e.preventDefault();
         $('.home-page-shortcut-btn').removeClass('active');
         $('.home-page-shortcut-ul').fadeOut(0);
@@ -39,6 +43,10 @@ $(function() {
             duration: 500,
             complete: function() {}
         });
+
+
+
+
     })
 });
 </script>
@@ -63,29 +71,24 @@ if ($query->have_posts()) {
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
 
+
+
+
+  
         <style>
             .home-banner-slider {
-                width: 100vw;
-                margin-left: 50%;
-                right: 50%;
-                transform: translateX(-50%);
-                position: relative;
+                width: 100%;
                 margin-bottom: 24px;
                 overflow: visible;
-                left: 50%;
-                max-width: 100vw !important;
-                padding: 0;
             }
             .banner-list {
                 display: grid;
-                /* Remove horizontal centering & max-width */
                 grid-template-columns: repeat(5, 1fr);
                 gap: 16px;
                 list-style: none;
                 padding: 0;
-                margin: 0;
-                width: 100vw;
-                max-width: 100vw;
+                margin: 0 auto;
+                max-width: 1100px;
             }
             .banner-list .banner-slide {
                 width: 100%;
@@ -127,6 +130,10 @@ if ($query->have_posts()) {
                 ?>
             </ul>
         </div>
+   
+
+  
+
 
         <?php
 echo '	<div class="clear-line"></div>';
@@ -134,16 +141,22 @@ echo'<h2 class="page-title hosme-cate-'.get_the_ID().'">- 最新訂貨 - <a href
 echo do_shortcode('[products category="live-new-product" limit="18" columns="4" visibility="visible" orderby="post_date" order="DESC"]');
 ?>
 
-<?php $terms=get_terms(array('taxonomy'=> 'product_tag', 'hide_empty'=> false)); ?>
 
-<h2 class="page-title home-cate-11">- 角色分類 - </h2>
-<div class="product-tags">
-  <?php foreach ($terms as $term) { ?>
-    <a href="<?php echo get_term_link($term->term_id, 'product_tag'); ?> " rel="tag"><?php echo $term->name; ?></a>
-  <?php } ?>
-</div>
 
-<?php $query=new WP_Query(array('post_type'=> 'hp_products_grp','posts_per_page'   => -1));
+
+<?php $terms=get_terms(array('taxonomy'=> 'product_tag', 'hide_empty'=> false));
+
+
+
+?><h2 class="page-title home-cate-11">- 角色分類 - </h2>
+        <div class="product-tags"><?php foreach ($terms as $term) {
+  ?><a href="<?php echo get_term_link($term->term_id, 'product_tag'); ?> " rel="tag"><?php echo $term->name;
+  ?></a><?php
+}
+
+?></div>
+
+        <?php $query=new WP_Query(array('post_type'=> 'hp_products_grp','posts_per_page'   => -1));
 
 if ($query->have_posts()) {
   while ($query->have_posts()) {
