@@ -100,14 +100,22 @@ if ($query->have_posts()) {
         @media (max-width: 600px) {
             .home-banner-grid {
                 gap: 8px;
+                padding-left: 8px;
+                padding-right: 8px;
             }
             .home-banner-row {
                 gap: 8px;
+                margin-left: -8px;
+                margin-right: -8px;
             }
             .home-banner-item {
                 flex: 0 0 100%;
                 max-width: 100%;
+                padding-left: 8px;
+                padding-right: 8px;
+                box-sizing: border-box;
             }
+       
         }
         </style>
 
