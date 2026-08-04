@@ -103,6 +103,10 @@ if ($query->have_posts()) {
             }
         }
         @media (max-width: 600px) {
+            .home-banner-grid
+            {
+                gap: 8px;
+            }
             .home-banner-row {
                 gap: 8px;
             }
@@ -111,6 +115,8 @@ if ($query->have_posts()) {
                 max-width: 32%;
                 /* margin-bottom: 8px; */
             }
+
+            
         }
         </style>
 
