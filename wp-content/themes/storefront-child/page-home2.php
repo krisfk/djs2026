@@ -71,8 +71,46 @@ if ($query->have_posts()) {
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
 
-test
 
+        <!-- Slick Slider Banner Start -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+        <style>
+        .slick-banner-wrapper {
+            margin: 0 auto 30px auto;
+            max-width: 1200px;
+        }
+        .slick-banner img {
+            width: 100%;
+            display: block;
+        }
+        </style>
+        <div class="slick-banner-wrapper">
+            <div class="slick-banner">
+                <div>
+                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner">
+                </div>
+                <!-- Add more <div><img ...></div> here for additional banners -->
+            </div>
+        </div>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script>
+        jQuery(document).ready(function($){
+            $('.slick-banner').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                autoplay: true,
+                autoplaySpeed: 4000
+            });
+        });
+        </script>
+        <!-- Slick Slider Banner End -->
+   
         
             
 
