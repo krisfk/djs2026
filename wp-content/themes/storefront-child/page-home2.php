@@ -24,7 +24,7 @@ get_header();
     }
     .home2-banner-image-list li {
         flex: 1 0 22%;
-        max-width: 23%;
+        max-width: 25%;
         box-sizing: border-box;
     }
     @media (max-width: 768px) {
