@@ -61,8 +61,10 @@ get_header();
                 $banner_url = get_field('banner_url');
 
                 if (!empty($banner_img)) {
+                    // Add 'class="home2-banner-img"' to the img tag via the $attr array.
                     $img_html = wp_get_attachment_image($banner_img, 'full', false, array(
                         'alt' => esc_attr(get_the_title()),
+                        'class' => 'home2-banner-img',
                         'style' => 'width:100%;height:auto;display:block;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);'
                     ));
 
@@ -80,6 +82,14 @@ get_header();
         ?>
     </ul>
 </div>
+<style>
+.home2-banner-img {
+    transition: opacity 0.2s;
+}
+.home2-banner-img:hover {
+    opacity: 0.85;
+}
+</style>
 
 
 <script type="text/javascript">
