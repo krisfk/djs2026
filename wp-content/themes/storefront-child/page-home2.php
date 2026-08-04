@@ -59,11 +59,18 @@ if ($banner_query->have_posts()) :
     while ($banner_query->have_posts()) : $banner_query->the_post();
 
      $banner_img = get_field('banner_img');
+     $banner_url = get_field('banner_url');
+     
     if (!empty($banner_img)) {
-        echo wp_get_attachment_image($banner_img, 'full', false, array(
+        $img_html = wp_get_attachment_image($banner_img, 'full', false, array(
             'alt' => esc_attr(get_the_title()),
             'style' => 'width:100%;height:auto;display:block;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:16px;'
         ));
+        if (!empty($banner_url)) {
+            echo '<a href="' . esc_url($banner_url) . '" target="_blank" rel="noopener noreferrer">' . $img_html . '</a>';
+        } else {
+            echo $img_html;
+        }
     }
     // if (!empty($banner_img)) {
     //     echo '<img src="' . esc_url($banner_img) . '" alt="' . esc_attr(get_the_title()) . '" style="width:100%;height:auto;display:block;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:16px;">';
