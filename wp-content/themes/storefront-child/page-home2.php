@@ -150,6 +150,19 @@ if ($query->have_posts()) {
         if (($i - 1) % $banners_per_row_desktop !== 0) {
             echo '</div>';
         }
+        // Ensure last row is closed if not a multiple of $banners_per_row_desktop (set to 4 for max 4 per row)
+        // Updated as per requirement: more than 4 slides in a row should shift to next row
+
+        // Modify banners per row to 4, to ensure max 4 per row
+        // Above loop needs to use 4 per row for desktop, update logic around this:
+        // -------- NEW CODE ------------
+        // This replaces previous loop's logic; should be set in prior code
+        // $banners_per_row_desktop = 4;
+
+        // If this line of logic sits outside the for-loop, ensure correct closure here:
+        if (($i - 1) % $banners_per_row_desktop !== 0) {
+            echo '</div>';
+        }
         ?>
         </div>
   
