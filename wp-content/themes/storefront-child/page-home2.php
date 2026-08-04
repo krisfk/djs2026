@@ -12,7 +12,7 @@
  */
 get_header();
 ?>
-
+test
 <script type="text/javascript">
 $(function() {
 
@@ -73,7 +73,6 @@ if ($query->have_posts()) {
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
 
-test
 
 
   
