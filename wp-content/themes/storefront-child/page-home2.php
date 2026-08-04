@@ -20,17 +20,6 @@ $(function() {
         e.preventDefault();
         $(this).toggleClass('active');
 
-        // Responsive: Set slides per row depending on device width
-        var slidesPerRow = 4; // default for desktop
-        if (window.innerWidth <= 768) { // adjust breakpoint as needed for mobile
-            slidesPerRow = 3;
-        }
-
-        // add a class or data attribute to the .home-page-shortcut-ul to control styling
-        $('.home-page-shortcut-ul')
-            .removeClass('slides-3 slides-4')
-            .addClass('slides-' + slidesPerRow);
-
         if ($(this).hasClass('active')) {
             $('.home-page-shortcut-ul').fadeIn(300);
         } else {
@@ -85,29 +74,63 @@ if ($query->have_posts()) {
 
 
 
-        <!-- Bootstrap grid version -->
-        <div class="container px-0 home-banner-grid">
-            <div class="row gx-3 gy-3">
-                <?php
-                $banner_img_url = "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg";
-                $total_banners = 12;
+  
+        <style>
+            .home-banner-slider {
+                width: 100%;
+                margin-bottom: 24px;
+                overflow: visible;
+            }
+            .banner-list {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 16px;
+                list-style: none;
+                padding: 0;
+                margin: 0 auto;
+                max-width: 1100px;
+            }
+            .banner-list .banner-slide {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .banner-list .banner-slide img {
+                display: block;
+                width: 100%;
+                max-width: 200px;
+                height: auto;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            }
 
-                for ($i = 1; $i <= $total_banners; $i++) {
-                    // col-lg-3 = 4 per row on desktop; col-md-4 = 3 per row tablet; col-6 = 2 per row mobile
-                    echo '<div class="col-6 col-md-4 col-lg-3 d-flex justify-content-center align-items-center mb-3">';
-                    echo '  <img src="' . esc_url($banner_img_url) . '" alt="Banner ' . $i . '" style="width:100%; max-width:100%; height:auto; border-radius: 8px;">';
-                    echo '</div>';
+            @media (max-width: 900px) {
+                .banner-list {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+            @media (max-width: 600px) {
+                .banner-list {
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 10px;
+                }
+                .banner-list .banner-slide img {
+                    max-width: 100px;
+                }
+            }
+        </style>
+        <div class="home-banner-slider">
+            <ul class="banner-list">
+                <?php
+                $banner_img_url = 'https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg';
+                for ($i = 1; $i <= 12; $i++) {
+                    echo '<li class="banner-slide"><img src="' . esc_url($banner_img_url) . '" alt="Banner ' . $i . '" /></li>';
                 }
                 ?>
-            </div>
+            </ul>
         </div>
-        <style>
-        /* Optional: add extra gap if needed */
-        .home-banner-grid .row {
-            --bs-gutter-x: 1rem; /* horizontal gap between columns */
-            --bs-gutter-y: 1rem; /* vertical gap between rows */
-        }
-        </style>
+   
 
   
 
