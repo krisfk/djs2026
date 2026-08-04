@@ -86,10 +86,10 @@ if ($query->have_posts()) {
             transform: none;
             box-sizing: border-box;
         }
-        .slick-banner {
+        .slick-banner, .slick-banner-extra {
             width: 100%;
         }
-        .slick-banner img {
+        .slick-banner img, .slick-banner-extra img {
             width: 100%;
             display: block;
         }
@@ -97,32 +97,49 @@ if ($query->have_posts()) {
         <div class="slick-banner-wrapper">
             <div class="slick-banner">
                 <div>
-                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner">
+                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner 1">
                 </div>
                 <div>
-                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner">
+                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner 2">
                 </div>
                 <div>
-                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner">
+                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner 3">
                 </div>
                 <div>
-                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner">
+                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner 4">
                 </div>
-                <div>
-                    <img src="https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg" alt="Genie Banner">
-                </div>
-                <!-- Add more <div><img ...></div> here for additional banners -->
             </div>
+            <?php
+            // Define banners as an array for dynamism or fetch dynamically. For demo, we'll statically declare them.
+            $banner_imgs = [
+                "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
+                "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
+                "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
+                "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
+                "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
+                // Add more image URLs if there are more banners
+            ];
+            // Only print the extra slider if more than 4 banners
+            if (count($banner_imgs) > 4) {
+                echo '<div class="slick-banner-extra" style="margin-top:16px;">';
+                // Output slides after the first four
+                for ($i = 4; $i < count($banner_imgs); $i++) {
+                    echo '<div><img src="'.$banner_imgs[$i].'" alt="Genie Banner '.($i+1).'"></div>';
+                }
+                echo '</div>';
+            }
+            ?>
         </div>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
         <script>
         jQuery(document).ready(function($){
+            // Main banner (first 4)
             $('.slick-banner').slick({
                 dots: true,
                 infinite: true,
                 speed: 500,
-                slidesToShow: 5,
+                slidesToShow: 4,
                 slidesToScroll: 1,
                 arrows: true,
                 autoplay: true,
@@ -137,17 +154,41 @@ if ($query->have_posts()) {
                         settings: { slidesToShow: 2 }
                     },
                     {
-                        // For mobile devices (480px and below), show 4 slides
                         breakpoint: 480,
-                        settings: { slidesToShow: 4 }
+                        settings: { slidesToShow: 1 }
                     }
                 ]
             });
+            // Extra banner (if exists)
+            if ($('.slick-banner-extra').length > 0) {
+                $('.slick-banner-extra').slick({
+                    dots: true,
+                    infinite: true,
+                    speed: 500,
+                    slidesToShow: 5,
+                    slidesToScroll: 1,
+                    arrows: true,
+                    autoplay: true,
+                    autoplaySpeed: 4000,
+                    responsive: [
+                        {
+                            breakpoint: 1200,
+                            settings: { slidesToShow: 3 }
+                        },
+                        {
+                            breakpoint: 768,
+                            settings: { slidesToShow: 2 }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: { slidesToShow: 1 }
+                        }
+                    ]
+                });
+            }
         });
         </script>
         <!-- Slick Slider Banner End -->
-
-   
             
 
         <?php
