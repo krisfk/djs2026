@@ -13,85 +13,6 @@
 get_header();
 ?>
 
-<style>
-    .home2-banner-image-list ul {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
-        padding: 0;
-        list-style: none;
-        margin: 0;
-    }
-    .home2-banner-image-list li {
-        flex: 1 0 22%;
-        max-width: 24%;
-        box-sizing: border-box;
-    }
-    @media (max-width: 768px) {
-        .home2-banner-image-list li {
-            flex: 1 0 30%;
-            max-width: 32%;
-        }
-    }
-    @media (max-width: 480px) {
-        .home2-banner-image-list li {
-            flex: 1 0 30%;
-            max-width: 33%;
-        }
-    }
-</style>
-
-
-<div class="home2-banner-image-list">
-    <ul>
-        <?php
-        // WP_Query: Fetch posts from the custom post type 'banners'
-        $args = array(
-            'post_type'      => 'banner',
-            'posts_per_page' => -1,
-            'post_status'    => 'publish',
-            'orderby'        => 'date',
-            'order'          => 'DESC',
-        );
-        $banner_query = new WP_Query($args);
-
-        if ($banner_query->have_posts()) :
-            while ($banner_query->have_posts()) : $banner_query->the_post();
-                $banner_img = get_field('banner_img');
-                $banner_url = get_field('banner_url');
-
-                if (!empty($banner_img)) {
-                    // Add 'class="home2-banner-img"' to the img tag via the $attr array.
-                    $img_html = wp_get_attachment_image($banner_img, 'full', false, array(
-                        'alt' => esc_attr(get_the_title()),
-                        'class' => 'home2-banner-img',
-                        'style' => 'width:100%;height:auto;display:block;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);'
-                    ));
-
-                    echo '<li>';
-                    if (!empty($banner_url)) {
-                        echo '<a href="' . esc_url($banner_url) . '" rel="noopener noreferrer">' . $img_html . '</a>';
-                    } else {
-                        echo $img_html;
-                    }
-                    echo '</li>';
-                }
-            endwhile;
-            wp_reset_postdata();
-        endif;
-        ?>
-    </ul>
-</div>
-<style>
-.home2-banner-img {
-    transition: opacity 0.2s;
-}
-.home2-banner-img:hover {
-    opacity: 0.85;
-}
-</style>
-
-
 <script type="text/javascript">
 $(function() {
 
@@ -146,24 +67,46 @@ if ($query->have_posts()) {
   echo'</ul>';
 }
 
-?>
-
-<a href="#" class="home-page-shortcut-btn">首頁捷徑</a></div>
+?><a href="#" class="home-page-shortcut-btn">首頁捷徑</a></div>
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
 
+        <?php
+	// if (have_posts()) : get_template_part('loop');
+// else : get_template_part('content', 'none');
+// endif;
+?><?php //echo do_shortcode( '[instagram-feed hashtag="#alice"]' );
+//[instagram-feed user="djsshopping" id="1297773553" includewords="#alice" num=1 cols=1]
+// echo do_shortcode('[instagram-feed user="djsshopping" id="1297773553" includewords="#妙妙貓" cols=4 num=4 media=photos showheader=false showcaption=false]');
+?>
+
+        <!-- <h4 style="text-align:center;margin-top:1rem;color:#d73b89;">🇯🇵日本連線期間，如購買請直接銀行過數/FPS，以節省信用咭支付的手續費和轉帳延遲。Thank
+            you🙇🏻‍♂️</h4> -->
 
 
-  
+
 
 
         <?php
 echo '	<div class="clear-line"></div>';
-echo'<h2 class="page-title hosme-cate-'.get_the_ID().'">- 最新訂貨 - <a href="https://www.djs.com.hk/product-category/live-new-product/">View all </a> -</h2>';
+echo'<h2 class="page-title home-cate-'.get_the_ID().'">- 最新訂貨 - <a href="https://www.djs.com.hk/product-category/live-new-product/">View all </a> -</h2>';
 echo do_shortcode('[products category="live-new-product" limit="18" columns="4" visibility="visible" orderby="post_date" order="DESC"]');
 ?>
 
 
+        <?php
+// echo '	<div class="clear-line"></div>';
+// echo'<h2 class="page-title home-cate-'.get_the_ID().'">- 🇯🇵日本即時連線🛍GOGOGO - <a href="https://www.djs.com.hk/product-category/jpconnect/">View all </a> -</h2>';
+// echo do_shortcode('[products category="jpconnect" limit="18" columns="4" visibility="visible" orderby="post_date" order="DESC"]');
+?>
+
+
+        <!-- <h2 class="page-title home-cate-10">- 最新系列 - </h2> -->
+        <?php
+// echo do_shortcode('[slick-carousel-slider category="146" design="design-6" slidestoshow="3"]');
+// echo do_shortcode('[slick-carousel-slider category="147" design="design-6" slidestoshow="3"]');
+// echo do_shortcode('[slick-carousel-slider category="148" design="design-6" slidestoshow="3"]');
+?>
 
 
 <?php $terms=get_terms(array('taxonomy'=> 'product_tag', 'hide_empty'=> false));
