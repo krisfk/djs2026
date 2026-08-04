@@ -156,7 +156,7 @@ if ($query->have_posts()) {
                     {
                         breakpoint: 480,
                         settings: { 
-                            slidesToShow: 1 
+                            slidesToShow: 4 // Changed from 1 to 4 for mobile
                         }
                     }
                 ]
@@ -184,7 +184,7 @@ if ($query->have_posts()) {
                         {
                             breakpoint: 480,
                             settings: { 
-                                slidesToShow: 1 
+                                slidesToShow: 4 // Changed from 1 to 4 for mobile
                             }
                         }
                     ]
