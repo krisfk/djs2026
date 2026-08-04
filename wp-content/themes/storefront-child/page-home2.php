@@ -78,7 +78,7 @@ if ($query->have_posts()) {
         .home-banner-grid {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 8px;
             /* margin-bottom: 30px; */
         }
         .home-banner-row {
