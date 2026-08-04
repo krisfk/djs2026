@@ -137,6 +137,7 @@ if ($query->have_posts()) {
                         settings: { slidesToShow: 2 }
                     },
                     {
+                        // For mobile devices (480px and below), show 4 slides
                         breakpoint: 480,
                         settings: { slidesToShow: 4 }
                     }
@@ -145,6 +146,7 @@ if ($query->have_posts()) {
         });
         </script>
         <!-- Slick Slider Banner End -->
+
    
             
 
