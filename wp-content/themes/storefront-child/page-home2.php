@@ -77,7 +77,7 @@ if ($query->have_posts()) {
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
         <style>
         .slick-banner-wrapper {
-            width: 100vw;
+            width: 92vw;
             margin: 0;
             max-width: none;
             position: relative;
