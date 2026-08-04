@@ -14,7 +14,7 @@ get_header();
 ?>
 
 <div class="home2-banner-image-list">
-    <ul style="display: flex; flex-wrap: wrap; gap: 16px; padding: 0; list-style: none;">
+    <ul style="display: flex; flex-wrap: wrap; gap: 16px; padding: 0; list-style: none;margin:0;">
         <?php
         $banner_img_url = "https://djs.com.hk/wp-content/uploads/2022/09/chipdate-mushroom-banner-1.jpg";
         for ($i = 0; $i < 6; $i++) {
