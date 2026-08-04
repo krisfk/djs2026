@@ -147,6 +147,13 @@ if ($query->have_posts()) {
             }
         }
         // Close the last row if it wasn't closed (i.e., if $total_banners is not a multiple of $banners_per_row_desktop)
+        // For mobile (<=600px), max 3 in a row is handled by CSS, 
+        // but to make semantic rows for accessibility and consistency, also close rows at 3 per row if on mobile.
+        // However, in PHP this is difficult without JS/CSS detection, so we handle 5 per row, visually 3 per row on mobile.
+        // If $total_banners is not a multiple of 5, close the last row here:
+        if (($i - 1) % $banners_per_row_desktop !== 0) {
+            echo '</div>';
+        }
         if (($i - 1) % $banners_per_row_desktop !== 0) {
             echo '</div>';
         }
