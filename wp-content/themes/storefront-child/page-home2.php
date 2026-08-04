@@ -40,6 +40,34 @@ get_header();
         }
     }
 </style>
+
+
+<?php
+// WP_Query: Fetch posts from the custom post type 'banners'
+$args = array(
+    'post_type'      => 'banners',
+    'posts_per_page' => -1,
+    'post_status'    => 'publish',
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+);
+$banner_query = new WP_Query($args);
+
+if ($banner_query->have_posts()) :
+ 
+    while ($banner_query->have_posts()) : $banner_query->the_post();
+        $banner_img_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+        echo 1;
+        if ($banner_img_url) {
+            // echo '<li><img src="' . esc_url($banner_img_url) . '" alt="' . esc_attr(get_the_title()) . '" style="width:100%; height:auto; display:block; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);"></li>';
+        }
+    endwhile;
+ 
+    wp_reset_postdata();
+endif;
+?>
+
+
 <div class="home2-banner-image-list">
     <ul>
         <?php
