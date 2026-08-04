@@ -90,9 +90,17 @@ if ($query->have_posts()) {
             width: 100%;
             margin-bottom: 16px;
         }
+        .slick-banner .slick-slide {
+            max-width: 342px;
+            /* Also center if possible */
+            margin-left: auto;
+            margin-right: auto;
+        }
         .slick-banner img {
             width: 100%;
             display: block;
+            max-width: 342px;
+            margin: 0 auto;
         }
         </style>
         <div class="slick-banner-wrapper">
