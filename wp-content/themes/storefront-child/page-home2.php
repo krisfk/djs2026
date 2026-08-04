@@ -12,7 +12,19 @@
  */
 get_header();
 ?>
-testf
+
+<div class="home2-banner-image-list">
+    <ul style="display: flex; flex-wrap: wrap; gap: 16px; padding: 0; list-style: none;">
+        <?php
+        $banner_img_url = "https://djs.com.hk/wp-content/uploads/2022/09/chipdate-mushroom-banner-1.jpg";
+        for ($i = 0; $i < 6; $i++) {
+            echo '<li style="flex: 1 0 30%; max-width: 32%; box-sizing: border-box;"><img src="' . esc_url($banner_img_url) . '" alt="Banner Image '.($i+1).'" style="width:100%; height:auto; display:block; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);"></li>';
+        }
+        ?>
+    </ul>
+</div>
+
+
 <script type="text/javascript">
 $(function() {
 
