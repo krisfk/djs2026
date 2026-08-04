@@ -71,21 +71,9 @@ if ($query->have_posts()) {
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
 
-        <?php
-	// if (have_posts()) : get_template_part('loop');
-// else : get_template_part('content', 'none');
-// endif;
-?><?php //echo do_shortcode( '[instagram-feed hashtag="#alice"]' );
-//[instagram-feed user="djsshopping" id="1297773553" includewords="#alice" num=1 cols=1]
-// echo do_shortcode('[instagram-feed user="djsshopping" id="1297773553" includewords="#妙妙貓" cols=4 num=4 media=photos showheader=false showcaption=false]');
-?>
-
-        <!-- <h4 style="text-align:center;margin-top:1rem;color:#d73b89;">🇯🇵日本連線期間，如購買請直接銀行過數/FPS，以節省信用咭支付的手續費和轉帳延遲。Thank
-            you🙇🏻‍♂️</h4> -->
 
             <div class="home-slick-slider" style="margin-bottom:30px;">
             <?php
-            // Example image URLs for slider; replace with your actual images or dynamic WP loop as needed
             $slider_images = array(
   'https://djs.com.hk/wp-content/uploads/2022/02/disney-nail-product-banner.jpg',
            'https://djs.com.hk/wp-content/uploads/2022/02/disney-nail-product-banner.jpg',
@@ -95,7 +83,7 @@ if ($query->have_posts()) {
             <div class="slick-slider">
                 <?php foreach($slider_images as $img_url): ?>
                     <div>
-                        <img src="<?php echo esc_url($img_url); ?>" style="width:100%;height:auto;" />
+                        <img style="width:100px;" src="<?php echo esc_url($img_url); ?>" style="width:100%;height:auto;" />
                     </div>
                 <?php endforeach; ?>
             </div>
