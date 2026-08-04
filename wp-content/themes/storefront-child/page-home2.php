@@ -79,13 +79,13 @@ if ($query->have_posts()) {
             display: flex;
             flex-direction: column;
             gap: 16px;
-            margin-bottom: 30px;
+            /* margin-bottom: 30px; */
         }
         .home-banner-row {
             display: flex;
             width: 100%;
             gap: 16px;
-            margin-bottom: 16px;
+            /* margin-bottom: 16px; */
         }
         .home-banner-item {
             flex: 1 1 0px;
@@ -99,7 +99,7 @@ if ($query->have_posts()) {
             .home-banner-item {
                 flex: 0 0 32%;
                 max-width: 32%;
-                margin-bottom: 12px;
+                /* margin-bottom: 12px; */
             }
         }
         @media (max-width: 600px) {
@@ -109,7 +109,7 @@ if ($query->have_posts()) {
             .home-banner-item {
                 flex: 0 0 32%;
                 max-width: 32%;
-                margin-bottom: 8px;
+                /* margin-bottom: 8px; */
             }
         }
         </style>
