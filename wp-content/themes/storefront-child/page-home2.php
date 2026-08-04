@@ -126,6 +126,9 @@ if ($query->have_posts()) {
         .slick-dots {
             display: none !important;
         }
+        .slick-dotted.slick-slider {
+    margin-bottom: 0.7em;
+}
         </style>
         <div class="slick-banner-wrapper">
             <?php
