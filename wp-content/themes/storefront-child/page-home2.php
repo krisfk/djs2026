@@ -100,12 +100,21 @@ if ($query->have_posts()) {
             display: flex;
             justify-content: center;
         }
+        /* 
+         * Add margin between slides using slick's custom CSS hooks.
+         * .slick-slide:not(:last-child) applies margin to all except the last in the row.
+         */
         .slick-banner .slick-slide {
             max-width: 342px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 6px; /* Add horizontal margin between slides */
             display: flex !important;
             justify-content: center;
+            box-sizing: border-box;
+        }
+        /* Adjust for correct alignment with margins at container level */
+        .slick-banner {
+            margin-left: -6px;
+            margin-right: -6px;
         }
         .slick-banner img {
             width: 100%;
