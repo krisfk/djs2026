@@ -12,7 +12,7 @@
  */
 get_header();
 ?>
-test
+testf
 <script type="text/javascript">
 $(function() {
 
