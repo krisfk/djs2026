@@ -71,6 +71,7 @@ if ($query->have_posts()) {
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
 
+
         <style>
         .home-banner-grid {
             display: flex;
@@ -83,67 +84,66 @@ if ($query->have_posts()) {
             gap: 16px;
         }
         .home-banner-item {
-            flex: 0 0 20%;
-            max-width: 20%;
+            flex: 0 0 19.2%;
+            max-width: 19.2%;
             min-width: 0;
             text-align: center;
+        }
+        @media (max-width: 1200px) {
+            .home-banner-row {
+                gap: 12px;
+            }
+            .home-banner-item {
+                flex: 0 0 24%;
+                max-width: 24%;
+            }
         }
         @media (max-width: 900px) {
             .home-banner-row {
                 gap: 12px;
             }
             .home-banner-item {
-                flex: 0 0 33.3333%;
-                max-width: 33.3333%;
+                flex: 0 0 32%;
+                max-width: 32%;
             }
         }
         @media (max-width: 600px) {
-            .home-banner-grid {
+            .home-banner-grid
+            {
                 gap: 8px;
-                padding-left: 8px;
-                padding-right: 8px;
             }
             .home-banner-row {
                 gap: 8px;
-                margin-left: -8px;
-                margin-right: -8px;
             }
             .home-banner-item {
                 flex: 0 0 100%;
                 max-width: 100%;
-                padding-left: 8px;
-                padding-right: 8px;
-                box-sizing: border-box;
             }
-       
         }
         </style>
 
         <div class="home-banner-grid">
         <?php
         $banner_img_url = "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg";
-        $total_banners = 12;
-
-        // By default, 5 slides per row (desktop)
-        $banners_per_row_desktop = 5;
-        // On mobile (<= 900px), 3 slides per row (handled by CSS)
-
-        for ($i = 1; $i <= $total_banners; $i++) {
-            if (($i - 1) % $banners_per_row_desktop === 0) {
+        for ($i = 1; $i <= 12; $i++) {
+            // On desktop: 5 banners per row
+            if (($i - 1) % 5 === 0) {
                 echo '<div class="home-banner-row">';
             }
             echo '<div class="home-banner-item">';
             echo '<img src="' . esc_url($banner_img_url) . '" alt="Banner ' . $i . '" style="width:100%; max-width:100%; height:auto; border-radius: 8px;">';
             echo '</div>';
-            if ($i % $banners_per_row_desktop === 0) {
+            if ($i % 5 === 0) {
                 echo '</div>';
             }
         }
-        if (($i - 1) % $banners_per_row_desktop !== 0) {
+        // Close the last row if not already closed
+        if (($i - 1) % 5 !== 0) {
             echo '</div>';
         }
         ?>
         </div>
+
 
 
         <?php
