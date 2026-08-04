@@ -78,12 +78,12 @@ if ($query->have_posts()) {
         <style>
         .slick-banner-wrapper {
             width: 100vw;
-            margin: 0 calc(-50vw + 50%) 30px calc(-50vw + 50%);
-            max-width: 100vw;
+            margin: 0;
+            max-width: none;
             position: relative;
-            left: 50%;
-            right: 50%;
-            transform: translateX(-50%);
+            left: 0;
+            right: 0;
+            transform: none;
             box-sizing: border-box;
         }
         .slick-banner {
@@ -145,6 +145,7 @@ if ($query->have_posts()) {
         });
         </script>
         <!-- Slick Slider Banner End -->
+   
 
    
             
