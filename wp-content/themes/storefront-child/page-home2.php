@@ -77,8 +77,17 @@ if ($query->have_posts()) {
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
         <style>
         .slick-banner-wrapper {
-            margin: 0 auto 30px auto;
-            max-width: 1200px;
+            width: 100vw;
+            margin: 0 calc(-50vw + 50%) 30px calc(-50vw + 50%);
+            max-width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            transform: translateX(-50%);
+            box-sizing: border-box;
+        }
+        .slick-banner {
+            width: 100%;
         }
         .slick-banner img {
             width: 100%;
@@ -117,13 +126,26 @@ if ($query->have_posts()) {
                 slidesToScroll: 1,
                 arrows: true,
                 autoplay: true,
-                autoplaySpeed: 4000
+                autoplaySpeed: 4000,
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: { slidesToShow: 3 }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: { slidesToShow: 2 }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: { slidesToShow: 1 }
+                    }
+                ]
             });
         });
         </script>
         <!-- Slick Slider Banner End -->
-   
-        
+
    
             
 
