@@ -74,97 +74,30 @@ if ($query->have_posts()) {
 
 
 
+        <!-- Bootstrap grid version -->
+        <div class="container px-0 home-banner-grid">
+            <div class="row gx-3 gy-3">
+                <?php
+                $banner_img_url = "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg";
+                $total_banners = 12;
+
+                for ($i = 1; $i <= $total_banners; $i++) {
+                    // col-lg-3 = 4 per row on desktop; col-md-4 = 3 per row tablet; col-6 = 2 per row mobile
+                    echo '<div class="col-6 col-md-4 col-lg-3 d-flex justify-content-center align-items-center mb-3">';
+                    echo '  <img src="' . esc_url($banner_img_url) . '" alt="Banner ' . $i . '" style="width:100%; max-width:100%; height:auto; border-radius: 8px;">';
+                    echo '</div>';
+                }
+                ?>
+            </div>
+        </div>
         <style>
-        .home-banner-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        .home-banner-row {
-            display: flex;
-            width: 100%;
-            gap: 16px;
-        }
-        .home-banner-item {
-            flex: 1 1 0px;
-            min-width: 0;
-            text-align: center;
-        }
-        /* Desktop: 5 per row */
-        @media (min-width: 901px) {
-            .home-banner-item {
-                flex: 0 0 19%;
-                max-width: 19%;
-            }
-        }
-        /* Tablet: 3 per row for width between 600px and 900px */
-        @media (max-width: 900px) and (min-width:601px) {
-            .home-banner-row {
-                gap: 12px;
-            }
-            .home-banner-item {
-                flex: 0 0 32%;
-                max-width: 32%;
-            }
-        }
-        /* Mobile: 3 per row for width <= 600px */
-        @media (max-width: 600px) {
-            .home-banner-grid
-            {
-                gap: 8px;
-            }
-            .home-banner-row {
-                gap: 8px;
-            }
-            .home-banner-item {
-                flex: 0 0 32%;
-                max-width: 32%;
-            }
+        /* Optional: add extra gap if needed */
+        .home-banner-grid .row {
+            --bs-gutter-x: 1rem; /* horizontal gap between columns */
+            --bs-gutter-y: 1rem; /* vertical gap between rows */
         }
         </style>
 
-        <div class="home-banner-grid">
-        <?php
-        $banner_img_url = "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg";
-        $total_banners = 12;
-
-        // Rows are 5 items wide by default (desktop), 3 on mobile/tablet via CSS.
-        $banners_per_row_desktop = 5;
-
-        for ($i = 1; $i <= $total_banners; $i++) {
-            // Open a row every 5 banners for desktop
-            if (($i - 1) % $banners_per_row_desktop === 0) {
-                echo '<div class="home-banner-row">';
-            }
-
-            echo '<div class="home-banner-item">';
-            echo '<img src="' . esc_url($banner_img_url) . '" alt="Banner ' . $i . '" style="width:100%; max-width:100%; height:auto; border-radius: 8px;">';
-            echo '</div>';
-
-            // Close the row after 5 banners, or at the end
-            if ($i % $banners_per_row_desktop === 0) {
-                echo '</div>';
-            }
-        }
-        // Close the last row if it wasn't closed (i.e., if $total_banners is not a multiple of $banners_per_row_desktop)
-        if (($i - 1) % $banners_per_row_desktop !== 0) {
-            echo '</div>';
-        }
-        // Ensure last row is closed if not a multiple of $banners_per_row_desktop (set to 4 for max 4 per row)
-        // Updated as per requirement: more than 4 slides in a row should shift to next row
-
-        // Modify banners per row to 4, to ensure max 4 per row
-        // Above loop needs to use 4 per row for desktop, update logic around this:
-        // -------- NEW CODE ------------
-        // This replaces previous loop's logic; should be set in prior code
-        // $banners_per_row_desktop = 4;
-
-        // If this line of logic sits outside the for-loop, ensure correct closure here:
-        if (($i - 1) % $banners_per_row_desktop !== 0) {
-            echo '</div>';
-        }
-        ?>
-        </div>
   
 
 
