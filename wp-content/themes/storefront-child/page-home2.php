@@ -67,70 +67,15 @@ if ($query->have_posts()) {
   echo'</ul>';
 }
 
-?><a href="#" class="home-page-shortcut-btn">首頁捷徑</a></div>
+?>
+
+てst
+<a href="#" class="home-page-shortcut-btn">首頁捷徑</a></div>
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
 
 
 
-
-  
-        <style>
-            .home-banner-slider {
-                width: 100%;
-                margin-bottom: 24px;
-                overflow: visible;
-            }
-            .banner-list {
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                gap: 16px;
-                list-style: none;
-                padding: 0;
-                margin: 0 auto;
-                max-width: 1100px;
-            }
-            .banner-list .banner-slide {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .banner-list .banner-slide img {
-                display: block;
-                width: 100%;
-                max-width: 200px;
-                height: auto;
-                border-radius: 8px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            }
-
-            @media (max-width: 900px) {
-                .banner-list {
-                    grid-template-columns: repeat(3, 1fr);
-                }
-            }
-            @media (max-width: 600px) {
-                .banner-list {
-                    grid-template-columns: repeat(3, 1fr);
-                    gap: 10px;
-                }
-                .banner-list .banner-slide img {
-                    max-width: 100px;
-                }
-            }
-        </style>
-        <div class="home-banner-slider">
-            <ul class="banner-list">
-                <?php
-                $banner_img_url = 'https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg';
-                for ($i = 1; $i <= 12; $i++) {
-                    echo '<li class="banner-slide"><img src="' . esc_url($banner_img_url) . '" alt="Banner ' . $i . '" /></li>';
-                }
-                ?>
-            </ul>
-        </div>
-   
 
   
 
