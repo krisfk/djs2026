@@ -71,30 +71,41 @@ if ($query->have_posts()) {
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
 
-
         <!-- Slick Slider Banner Start -->
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
         <style>
         .slick-banner-wrapper {
-            width: 92vw;
-            margin: 0;
-            max-width: none;
+            width: 100vw;
+            margin: 0 auto;
+            max-width: 1400px;
             position: relative;
             left: 0;
             right: 0;
             transform: none;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         .slick-banner-group {
             width: 100%;
             margin-bottom: 16px;
+            display: flex;
+            justify-content: center;
+        }
+        .slick-banner {
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
         .slick-banner .slick-slide {
             max-width: 342px;
-            /* Also center if possible */
             margin-left: auto;
             margin-right: auto;
+            display: flex !important;
+            justify-content: center;
         }
         .slick-banner img {
             width: 100%;
@@ -105,9 +116,7 @@ if ($query->have_posts()) {
         </style>
         <div class="slick-banner-wrapper">
             <?php
-            // Set slides per group
             $slides_per_group = 4;
-            // Define banners as an array for dynamism or fetch dynamically. For demo, we'll statically declare them.
             $banner_imgs = [
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
@@ -119,7 +128,6 @@ if ($query->have_posts()) {
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg"
-                // Add more image URLs if there are more banners
             ];
             $total_slides = count($banner_imgs);
             $num_groups = ceil($total_slides / $slides_per_group);
@@ -141,7 +149,6 @@ if ($query->have_posts()) {
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
         <script>
         jQuery(document).ready(function($){
-            // Slides per group (must match the PHP variable for desktop)
             var slidesPerGroup = 4;
 
             $('.slick-banner').each(function(){
@@ -155,18 +162,20 @@ if ($query->have_posts()) {
                     arrows: true,
                     autoplay: true,
                     autoplaySpeed: 4000,
+                    centerMode: true,
+                    centerPadding: '0', // Ensure full centering
                     responsive: [
                         {
                             breakpoint: 1200,
-                            settings: { slidesToShow: Math.min(slideCount, 3) }
+                            settings: { slidesToShow: Math.min(slideCount, 3), centerMode: true, centerPadding: '0' }
                         },
                         {
                             breakpoint: 768,
-                            settings: { slidesToShow: Math.min(slideCount, 2) }
+                            settings: { slidesToShow: Math.min(slideCount, 2), centerMode: true, centerPadding: '0' }
                         },
                         {
                             breakpoint: 480,
-                            settings: { slidesToShow: Math.min(slideCount, 1) }
+                            settings: { slidesToShow: Math.min(slideCount, 1), centerMode: true, centerPadding: '0' }
                         }
                     ]
                 });
@@ -174,6 +183,7 @@ if ($query->have_posts()) {
         });
         </script>
         <!-- Slick Slider Banner End -->
+  
 
 
         <?php
