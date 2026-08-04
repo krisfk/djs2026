@@ -20,6 +20,17 @@ $(function() {
         e.preventDefault();
         $(this).toggleClass('active');
 
+        // Responsive: Set slides per row depending on device width
+        var slidesPerRow = 4; // default for desktop
+        if (window.innerWidth <= 768) { // adjust breakpoint as needed for mobile
+            slidesPerRow = 3;
+        }
+
+        // add a class or data attribute to the .home-page-shortcut-ul to control styling
+        $('.home-page-shortcut-ul')
+            .removeClass('slides-3 slides-4')
+            .addClass('slides-' + slidesPerRow);
+
         if ($(this).hasClass('active')) {
             $('.home-page-shortcut-ul').fadeIn(300);
         } else {
