@@ -116,6 +116,10 @@ if ($query->have_posts()) {
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
+                "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",  "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
+                "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
+                "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
+                "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 "https://djs.com.hk/wp-content/uploads/2022/08/genie-banner.jpg",
                 // Add more image URLs if there are more banners
             ];
@@ -156,7 +160,7 @@ if ($query->have_posts()) {
                     {
                         breakpoint: 480,
                         settings: { 
-                            slidesToShow: 4 // Changed from 1 to 4 for mobile
+                            slidesToShow: 3 // Changed from 1 to 4 for mobile
                         }
                     }
                 ]
@@ -184,7 +188,7 @@ if ($query->have_posts()) {
                         {
                             breakpoint: 480,
                             settings: { 
-                                slidesToShow: 4 // Changed from 1 to 4 for mobile
+                                slidesToShow: 3 // Changed from 1 to 4 for mobile
                             }
                         }
                     ]
