@@ -1555,3 +1555,7 @@ a.cart-contents:hover,
     right: 5px !important;
   }
 }
+
+#mega-menu-wrap-primary .mega-menu-toggle .mega-toggle-block-0 .mega-toggle-animated-slider .mega-toggle-animated-inner{
+  opacity: 0 !important;
+}
