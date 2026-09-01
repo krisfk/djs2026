@@ -46,7 +46,8 @@ get_header();
 
     .wts-btn{
     color: #d73b89;
-    font-weight: normal;
+    font-weight: bold;
+    text-decoration: underline;
     }
 </style>
 
