@@ -55,7 +55,7 @@ get_header();
 <style>
 .wts-btn {
     display: inline-block;
-    padding: 0.1em 1em;
+    padding: 0.1em 0.5em;
     font-size: 1.1em;
     font-weight: 600;
     color: #fff;
