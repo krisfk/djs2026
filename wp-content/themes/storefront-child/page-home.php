@@ -46,8 +46,8 @@ get_header();
 </style>
 
 
-<div>
-長期誠接 各大品牌 日本長期代購 Wts 94444920 報價
+<div style="text-align:center; margin-top:1em;">
+    長期誠接 各大品牌 日本長期代購 Wts 94444920 報價
 </div>
 
 <div class="home2-banner-image-list">
