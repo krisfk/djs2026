@@ -47,7 +47,7 @@ get_header();
 
 
 <div style="text-align:center; margin-top:1em;">
-    長期誠接 各大品牌 日本長期代購 可Whatsapp <a class="wts-btn" href="http://wa.me/85294444920" target="_blank">94444920</a> 報價
+    長期誠接 各大品牌 日本長期代購 可 <a class="wts-btn" href="http://wa.me/85294444920" target="_blank">Wts 94444920</a> 報價
 </div>
 
 
@@ -55,7 +55,7 @@ get_header();
 <style>
 .wts-btn {
     display: inline-block;
-    padding: 0.4em 1.3em;
+    padding: 0.1em 1em;
     font-size: 1.1em;
     font-weight: 600;
     color: #fff;
