@@ -46,7 +46,7 @@ get_header();
 </style>
 
 
-<div style="text-align:center; margin-top:1em;">
+<div style="text-align:center; margin-top:1em;color:#d73b89;">
     長期誠接 各大品牌 日本長期代購 可 <a class="wts-btn" href="http://wa.me/85294444920" target="_blank">Wts 94444920</a> 報價
 </div>
 
