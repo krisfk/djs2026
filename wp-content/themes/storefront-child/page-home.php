@@ -47,7 +47,8 @@ get_header();
 
 
 <div style="text-align:center; margin-top:1em;">
-    長期誠接 各大品牌 日本長期代購 可Whatsapp <a href="http://wa.me/85294444920" target="_blank">94444920</a> 報價
+    長期誠接 各大品牌 日本長期代購 可Whatsapp 
+    <a href="http://wa.me/85294444920" target="_blank" class="home-wa-btn" style="display:inline-block;padding:0.6em 1.2em;background:#25D366;color:#fff;border:none;border-radius:4px;font-weight:bold;text-decoration:none;font-size:1.1em;box-shadow:0 2px 6px rgba(0,0,0,0.09);transition:background 0.2s;">Whatsapp 報價：94444920</a>
 </div>
 
 <div class="home2-banner-image-list">
