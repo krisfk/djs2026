@@ -43,6 +43,11 @@ get_header();
             max-width: 33%;
         }
     }
+
+    .wts-btn{
+    color: #d73b89;
+    font-weight: normal;
+    }
 </style>
 
 
@@ -50,63 +55,10 @@ get_header();
     長期誠接 各大品牌 日本長期代購 可 <a class="wts-btn" href="http://wa.me/85294444920" target="_blank">Wts 94444920</a> 報價
 </div>
 
+.
 
 
-<style>
-.wts-btn {
-    display: inline-block;
-    padding: 0.1em 0.5em;
-    font-size: 1.1em;
-    font-weight: 600;
-    color: #fff;
-    background: linear-gradient(90deg,#38ba71 0,#01c853 75%);
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    cursor: pointer;
-    margin-left: 5px;
-    transition: background 0.18s;
-}
-.wts-btn:hover,
-.wts-btn:focus {
-    background: linear-gradient(90deg,#01a35f 0,#038453 75%);
-    color: #fff;
-    text-decoration: none;
-    outline: none;
-}
-</style>
 
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function() {
-    // Find all links with .wts-btn and replace them with buttons, preserving href
-    document.querySelectorAll('a.wts-btn').forEach(function(link) {
-        var href = link.getAttribute('href');
-        var target = link.getAttribute('target');
-        var text = link.innerText || link.textContent;
-
-        var btn = document.createElement('button');
-        btn.className = link.className;
-        btn.type = 'button';
-        btn.innerText = text;
-
-        // Assign click to redirect to the link
-        btn.addEventListener('click', function() {
-            if (target === '_blank') {
-                window.open(href, '_blank', 'noopener');
-            } else {
-                window.location.href = href;
-            }
-        });
-
-        // Copy any inline style from link if exists
-        if (link.getAttribute('style')) {
-            btn.setAttribute('style', link.getAttribute('style'));
-        }
-
-        link.parentNode.replaceChild(btn, link);
-    });
-});
-</script>
 
 
 <div class="home2-banner-image-list">
